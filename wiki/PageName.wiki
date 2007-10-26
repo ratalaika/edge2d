@@ -11,3 +11,7 @@ Currently i donot know where to put these develop log for edge2d. It doesnot mat
 0.1.0 will be released soon. Today i port CrazyEggs to edge2d. And everything goes well except there is a bug on Ati video card. But trust me it's not the bug of edge. I should consider that it's the bug for graphics plugin . As my introduction for edge, edge only contains abstract code and basic code. Everything will implement something is a plugin. So the graphics module also is a plugin. i think it's better for me to fix the bug.
 
 BTW, i asked some friends to make logo for edge. i hope i can get the best logo for edge at last. 
+
+10.26.2007
+
+There still has a bug on some ATI video cards. The texture cannot be rendered correctly. I donot know why and donot know how to debug this bug. So i upload D3D8Graphics plugin source code. I hope somebody can fix it .
