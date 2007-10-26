@@ -15,3 +15,9 @@ BTW, i asked some friends to make logo for edge. i hope i can get the best logo 
 10.26.2007
 
 There still has a bug on some ATI video cards. The texture cannot be rendered correctly. I donot know why and donot know how to debug this bug. So i upload D3D8Graphics plugin source code. I hope somebody can fix it .
+
+10.26.2007 15:08
+
+I have fixed the bug talked before. The reason is the difference between nvidia card and ati card. When i create a d3d texture and the size is not a power of 2, nvidia will create it if the card support. But on ati card, it's difference, it will pad the size to be a power of 2 automatically. Maybe it's the difference that D3DXCreateTexture performes on nvidia and ati card. Anyway, i always use the texture original size. So that works correctly. 
+
+I upload the new version of CrazyEggsEdge. 
