@@ -107,13 +107,13 @@ namespace Edge
 		 * when the window get focus, this function will be called.
 		 *
 		 */
-		void OnGetFocus() { mbActive = true; }
+		void OnGetFocus() ;
 
 		/**
 		 * when the window lost focus, this function will be called.
 		 *
 		 */
-		void OnLostFocus() { mbActive = false; }
+		void OnLostFocus() ;
 
 	protected:
 		/**
