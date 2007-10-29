@@ -1,8 +1,27 @@
-/**
- *
- *
- *
- */
+/*
+-----------------------------------------------------------------------------
+This source file is part of EDGE
+ (A very object-oriented and plugin-based 2d game engine)
+For the latest info, see http://edge2d.googlecode.com
+
+Copyright (c) 2007-2008 The EDGE Team
+Also see acknowledgements in Readme.html
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+Place - Suite 330, Boston, MA 02111-1307, USA, or go to
+http://www.gnu.org/copyleft/lesser.txt.
+-----------------------------------------------------------------------------
+*/
 #ifndef EDGE_WINDOW_H
 #define EDGE_WINDOW_H
 
@@ -138,7 +157,7 @@ namespace Edge
 		virtual void handleMessage() = 0;
 
 		/**
-		 * addListener
+		 * addListener,add a window listener so that you can be notified by the window's messages.
 		 *
 		 */
 		virtual void addListener( WindowListener *listener );
@@ -152,25 +171,31 @@ namespace Edge
 
 		/**
 		 * setWidth
-		 *
+		 *  
+		 * @remarks set the window's width, you must call this function before create,otherwise it willnot
+		 * make any effect.
 		 */
 		void setWidth( int width )   { mWidth = width; }
 		
 		/**
 		 * setHeight
-		 * 
+		 *  
+		 * @remarks set the window's height, you must call this function before create,otherwise it willnot
+		 * make any effect.
 		 */
 		void setHeight( int height ) { mHeight = height; }
 
 		/**
 		 * setCaption
 		 *
+		 * @remarks set the windows's caption ( title ) , you can call this function anytime you want.
 		 */
 		virtual void setCaption( const string &caption ) = 0 ;
 	
 		/**
 		 * getCustomData
 		 * 
+		 * @remarks you can get some special data by this function like window's handle in Win32Window.
 		 */
 		virtual void getCustomData( const string &type, void *pOutData ) {}
 
@@ -181,11 +206,36 @@ namespace Edge
 		 */
 		virtual void setCustomData( const string &type, void *pInData ) {}
 
-		/// get
+		/** 
+		 * get the window's width.
+		 *
+		 */
 		int getWidth()             { return mWidth;    }
+
+		/** 
+		 * get the window's height.
+		 *
+		 */
 		int getHeight()            { return mHeight;   }
+
+		/**
+		 * get the window's caption.
+		 *
+		 */
 		const string &getCaption() { return mCaption;  }
+
+		/**
+		 * check whether the application is in windowed mode.
+		 *
+		 */
 		bool isWindowed()          { return mWindowed; }
+
+		/**
+		 * check whether the window is closed. 
+		 * @remarks when the window is closed, that means the application is end.
+		 * so this flag can be the flag which can identify whether the game is end.
+		 *
+		 */
 		bool isClosed()			   { return mClosed;   }
 
 	protected:

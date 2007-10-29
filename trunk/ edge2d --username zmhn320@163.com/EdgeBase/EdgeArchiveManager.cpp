@@ -1,7 +1,27 @@
-/**
- *
- *
- */
+/*
+-----------------------------------------------------------------------------
+This source file is part of EDGE
+ (A very object-oriented and plugin-based 2d game engine)
+For the latest info, see http://edge2d.googlecode.com
+
+Copyright (c) 2007-2008 The EDGE Team
+Also see acknowledgements in Readme.html
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+Place - Suite 330, Boston, MA 02111-1307, USA, or go to
+http://www.gnu.org/copyleft/lesser.txt.
+-----------------------------------------------------------------------------
+*/
 #include "EdgeArchiveManager.h"
 #include "EdgeException.h"
 #include "EdgeLogManager.h"
@@ -42,11 +62,12 @@ namespace Edge
 	Archive *ArchiveManager::createArchive( const string &name, const string &type, void *pInData )
 	{
 		string cname( name );
-		modifyName( cname );
+		_modifyName( cname );
 
-		Archive *archive = getArchive( cname );
+		Archive *archive = _selfGetArchive( cname );
 		if( archive != 0 )
 		{
+			LogManager::getSingleton().logMessage( LL_WARNING, "The Archive " + name + " is already created!" );
 			return archive;
 		}
 
@@ -102,10 +123,16 @@ namespace Edge
 	void	ArchiveManager::destroyArchive( const string &name )
 	{
 		string cname( name );
-		modifyName( cname );
+		_modifyName( cname );
 		
-		destroyArchive( getArchive( cname ) );
-
+		Archive *archive = _selfGetArchive( cname );
+		if( archive == 0 )
+		{
+			EDGE_EXCEPT( Exception::EC_INVALIDPARAMS, "Cannot find the archive : " + name,
+				"ArchiveManager::destroyArchive" );
+		}
+		
+		destroyArchive( archive );
 	}
 
 	void	ArchiveManager::destroyAllArchives()
@@ -135,19 +162,31 @@ namespace Edge
 	Archive	*ArchiveManager::getArchive( const string &name )
 	{
 		string cname( name );
-		modifyName( cname );
+		_modifyName( cname );
+	
+		Archive *archive = _selfGetArchive( cname );
+		if( archive == 0 )
+		{
+			EDGE_EXCEPT( Exception::EC_INVALIDPARAMS, "Cannot find the archive : " + name,
+				"ArchiveManager::getArchive" );
+		}
 
-		ArchiveMap::iterator it = mArchives.find( cname );
+		return archive;
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+	Archive *ArchiveManager::_selfGetArchive( const string &name )
+	{
+		ArchiveMap::iterator it = mArchives.find( name );
 		if( it == mArchives.end() )
 		{
-			LogManager::getSingleton().logMessage( LL_WARNING, "Cannot find the archive , Name: " + name );
 			return 0;
 		}
 		
 		return it->second ;
 	}
 
-	void ArchiveManager::modifyName( string &name )
+	void ArchiveManager::_modifyName( string &name )
 	{
 		/// make '\\' to '/'
 		for( size_t i = 0; i < name.size(); ++ i )

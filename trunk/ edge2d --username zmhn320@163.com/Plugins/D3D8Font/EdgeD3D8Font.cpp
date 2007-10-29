@@ -227,22 +227,11 @@ namespace Edge
 		graphics->removeCustomData( "ON_LOST_FUNC", OnLostDevice );
 		graphics->removeCustomData( "ON_RESET_FUNC", OnResetDevice );
 	}
-/*
-	FontPtr D3D8FontFactory::createFont( const FontParam &param )
-	{
-		D3D8Font *font = new D3D8Font( this, "NoName" );
-		font->create( param );
 
-		/// save its DX object, later it can help it with restoring the DX object
-		mD3D8Fonts.push_back( font );
-		
-		return FontPtr( font );
-	}
-*/
 	Font *D3D8FontFactory::createFont( const string &name, const FontParam &param )
 	{
 		/// check whether the font is already created
-		Font *font = getFont( name );
+		Font *font = _selfGetFont( name );
 		if( font != NULL )
 		{
 			LogManager::getSingleton().logMessage( LL_WARNING, "The font : " + name + " is already created" );
@@ -252,7 +241,7 @@ namespace Edge
 		D3D8Font *d3d8font = new D3D8Font( this, name );
 		d3d8font->create( param );
 
-		saveFont( name, d3d8font );
+		_saveFont( name, d3d8font );
 
 		/// save its DX object, later it can help it with restoring the DX object
 		mD3D8Fonts.push_back( d3d8font );
@@ -263,10 +252,10 @@ namespace Edge
 	Font *D3D8FontFactory::createFont( const string &name, const string &file )
 	{
 		string cfile( file );
-		modifyName( cfile );
+		_modifyName( cfile );
 
 		/// check whether the font is already created
-		Font *font = getFont( name );
+		Font *font = _selfGetFont( name );
 		if( font != NULL )
 		{
 			LogManager::getSingleton().logMessage( LL_WARNING, "The font : " + name + " is already created" );
@@ -289,7 +278,7 @@ namespace Edge
 		/// save its DX object, later it can help it with restoring the DX object
 		mD3D8Fonts.push_back( d3d8font );
 
-		saveFont( name, d3d8font );
+		_saveFont( name, d3d8font );
 		return d3d8font;
 
 	}

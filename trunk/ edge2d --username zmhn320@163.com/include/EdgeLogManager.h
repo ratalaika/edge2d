@@ -1,7 +1,26 @@
-/**
-*
-*
-*
+/*
+-----------------------------------------------------------------------------
+This source file is part of EDGE
+ (A very object-oriented and plugin-based 2d game engine)
+For the latest info, see http://edge2d.googlecode.com
+
+Copyright (c) 2007-2008 The EDGE Team
+Also see acknowledgements in Readme.html
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+Place - Suite 330, Boston, MA 02111-1307, USA, or go to
+http://www.gnu.org/copyleft/lesser.txt.
+-----------------------------------------------------------------------------
 */
 #ifndef EDGE_LOGMANAGER_H
 #define EDGE_LOGMANAGER_H
@@ -31,6 +50,8 @@ namespace Edge
 	/** 
 	 * The log manager handles the creation and retrieval of logs for the
 	 * application.
+	 * @remarks it's the basic component for the engine, so it will be created when you call
+	 * EdgeEngine::initBase.
 	 */
 	class EDGE_EXPORT LogManager : public Singleton<LogManager>
 	{
@@ -48,7 +69,7 @@ namespace Edge
 		~LogManager();
 
 		/**
-		 * addListener
+		 * addListener, you can add a log listener to redirect the log message.
 		 *
 		 */
 		void	addListener( LogListener *listener );
@@ -72,6 +93,7 @@ namespace Edge
 		/**
 		 * getLog
 		 *
+		 * get a log.
 		 */
 		Log		*getLog( const string &name );
 
@@ -87,7 +109,17 @@ namespace Edge
 		 *
 		 */
 		void	destroyLog( const string &name );
+
+		/**
+		 * destroyLog
+		 *
+		 */
 		void	destroyLog( Log *log );
+
+		/**
+		 * destroyAllLogs, called by destructor.
+		 *
+		 */
 		void	destroyAllLogs();
 
 		/**
@@ -105,6 +137,11 @@ namespace Edge
 		 * messages.If LL_WARNING, it will write error and warning informations
 		 */
 		void	setLogLevel( ELogLevel level ) { mLogLevel = level; }
+
+		/**
+		 * get current log level.
+		 *
+		 */
 		ELogLevel getLogLevel() { return mLogLevel; }
 
 		/**
@@ -126,6 +163,13 @@ namespace Edge
 		 * write 512 characters.
 		 */
 		void	logMessageF( ELogLevel level, const char *format, ... );
+
+		/**
+		 * writes a formatted message to the log file
+		 *
+		 * it's a help function so maybe sometimes it cannot be used, and it only can 
+		 * write 512 characters.
+		 */
 		void	logMessageF( const string &logname, ELogLevel level, const char *format, ... );
 
 	private:

@@ -29,7 +29,7 @@ namespace Edge
 		release();
 	}
 
-	bool	D3D8ImageFactory::initiate()
+	bool D3D8ImageFactory::initiate()
 	{
 		Graphics *graphics = EdgeEngine::getSingleton().getGraphics();
 
@@ -40,7 +40,7 @@ namespace Edge
 		return true;
 	}
 
-	void	D3D8ImageFactory::release()
+	void D3D8ImageFactory::release()
 	{
 		Graphics *graphics = EdgeEngine::getSingleton().getGraphics();
 
@@ -49,13 +49,13 @@ namespace Edge
 		graphics->removeCustomData( "ON_RESET_FUNC", OnResetDevice );
 	}
 
-	Image		*D3D8ImageFactory::createImage( const string &file )
+	Image *D3D8ImageFactory::createImage( const string &file )
 	{
 		string cfile( file );
-		modifyName( cfile );
+		_modifyName( cfile );
 
 		/// check whether the image is already created
-		Image *image = getImage( cfile ) ;
+		Image *image = _selfGetImage( cfile ) ;
 		if( image != NULL )
 		{
 			LogManager::getSingleton().logMessage( LL_WARNING, "The image : " + cfile + " is already created!" );
@@ -78,17 +78,17 @@ namespace Edge
 		image = new D3D8Image( cfile, this, D3D8Graphics::getSingletonPtr() );
 		image->create( imageData );
 
-		saveImage( cfile, image );
+		_saveImage( cfile, image );
 
 		return image;
 	}
 
-	Image		*D3D8ImageFactory::createImage( const string &name, int width, int height )
+	Image *D3D8ImageFactory::createImage( const string &name, int width, int height )
 	{
 		string cname( name );
-		modifyName( cname );
+		_modifyName( cname );
 
-		Image *image = getImage( cname ) ;
+		Image *image = _selfGetImage( cname ) ;
 		if( image != NULL )
 		{
 			return image;
@@ -96,17 +96,17 @@ namespace Edge
 
 		D3D8Image *d3dimage = new D3D8Image( cname, this, D3D8Graphics::getSingletonPtr() );
 		d3dimage->create( width, height );
-		saveImage( cname, d3dimage );
+		_saveImage( cname, d3dimage );
 		return d3dimage;
 	}
 
-	Image		*D3D8ImageFactory::copyImage( const string &name, const string &origin, float x, float y, float w, float h )
+	Image *D3D8ImageFactory::copyImage( const string &name, const string &origin, float x, float y, float w, float h )
 	{
 		string cfile( origin );
-		modifyName( cfile );
+		_modifyName( cfile );
 		
 		/// get the original image
-		Image *image = getImage( cfile ) ;
+		Image *image = _selfGetImage( cfile ) ;
 		if( image == NULL )
 		{
 			LogManager::getSingleton().logMessage( LL_WARNING, "Want to copy an image, but the original image is not exist. Try to create it!");
@@ -114,16 +114,16 @@ namespace Edge
 		}
 
 		string cname( name );
-		modifyName( cname );
+		_modifyName( cname );
 
 		Image *new_img = image->clone( cname, x, y, w, h );
 
-		saveImage( cname, new_img );
+		_saveImage( cname, new_img );
 
 		return image;
 	}
 
-	Image		*D3D8ImageFactory::createTarget( const string &name, int width, int height )
+	Image *D3D8ImageFactory::createTarget( const string &name, int width, int height )
 	{
 		D3D8Image *d3dimage = new D3D8Image( name, this, D3D8Graphics::getSingletonPtr(), Image::IT_TARGET );
 		d3dimage->create( width, height );
@@ -131,7 +131,7 @@ namespace Edge
 		/// save the target information, so later its d3d resources can be restore
 		mTargets.push_back( d3dimage );
 
-		saveImage( name, d3dimage );
+		_saveImage( name, d3dimage );
 		return d3dimage;
 	}
 

@@ -1,8 +1,27 @@
-/**
- *
- *
- *
- */
+/*
+-----------------------------------------------------------------------------
+This source file is part of EDGE
+ (A very object-oriented and plugin-based 2d game engine)
+For the latest info, see http://edge2d.googlecode.com
+
+Copyright (c) 2007-2008 The EDGE Team
+Also see acknowledgements in Readme.html
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+Place - Suite 330, Boston, MA 02111-1307, USA, or go to
+http://www.gnu.org/copyleft/lesser.txt.
+-----------------------------------------------------------------------------
+*/
 #ifndef EDGE_FONT_H
 #define EDGE_FONT_H
 
@@ -24,7 +43,9 @@ namespace Edge
 
 	/**
 	 * FontParam, contains the information to create a font
-	 *
+	 * @remarks it's an abstract structure, when you want to create a font, you usually
+	 * need to create a FontParam structure to specify some properties. But you need to 
+	 * create a TTFontParam instead FontParam.
 	 */
 	struct FontParam
 	{
@@ -37,16 +58,21 @@ namespace Edge
 	 */
 	struct TTFontParam : public FontParam
 	{
+		/// specifies the typeface name of the font. 
 		string mFaceName;
+		/// i.e -12, the logic height of the font
 		long mHeight;
+		/// usually canbe 0.
 		long mWidth;
 		long mWeight;
+		/// whether italic
 		bool mItalic;
+		/// whether underline.
 		bool mUnderLine;
 
 		TTFontParam() : mFaceName( "System" )
 		{
-			mHeight = -12;
+			mHeight = -18;
 			mWidth = 0;
 			mWeight = 0;
 			mItalic = false;
@@ -63,7 +89,9 @@ namespace Edge
 	};
 
 	/**
-	 * Font, use font to render text
+	 * Font, use font to render text.
+	 * @remarks this class is an abstract class.And you donot need to create a font yourslef.
+	 * You can call FontFactory::createFont to create a font for you.
 	 *
 	 */
 	class EDGE_EXPORT Font
@@ -194,7 +222,9 @@ namespace Edge
 	typedef shared_ptr<Font> FontPtr;
 
 	/**
-	 * FontFactory, it can create a font, and store a font
+	 * FontFactory, it can create a font, and store a font. 
+	 * @remarks usually you want to create a font to render some texts, you need to use this 
+	 * class to create a font for you.
 	 *
 	 */
 	class EDGE_EXPORT FontFactory
@@ -226,23 +256,24 @@ namespace Edge
 
 		/**
 		 * createFont
-		 * this function will not save the pointer, and when the returned value
-		 * is destroyed, the Font object also will be destroyed. 
-		 */
-		//virtual FontPtr	createFont( const FontParam &param ) = 0;
-
-		/**
-		 * createFont
 		 * this function will save the pointer, and you should specify an unique
 		 * name for the Font.And later you can get the Font by its name.
 		 */
 		virtual Font *createFont( const string &name, const FontParam &param ) = 0;
 
+		/**
+		 * You can write a font config file to specify a FontParam, so you can create
+		 * a font from a font config file. 
+		 *
+		 *
+		 */
 		virtual Font *createFont( const string &name, const string &file ) = 0;
 
 		/**
 		 * getFont
 		 *
+		 * get a font you have created before.
+		 * @warning if the font is not exist, this function will throw an exception.
 		 */
 		Font*	getFont( const string &name );
 
@@ -253,10 +284,15 @@ namespace Edge
 		 * 
 		 */
 		void	removeFont( const string &name );
+
+		/**
+		 * 
+		 *
+		 */
 		void	removeFont( Font *font );
 
 		/**
-		 * removeAllFonts
+		 * removeAllFonts, called by the destructor. 
 		 *
 		 */
 		void	removeAllFonts();
@@ -270,10 +306,16 @@ namespace Edge
 
 	protected:
 		/**
+		 *
+		 * selfGetFont, this class will use it to check whether the font is already exist.
+		 */
+		Font *_selfGetFont( const string &name );
+
+		/**
 		 * saveFont, save the font object in the list
 		 *
 		 */
-		void saveFont( const string &name, Font *font )
+		void _saveFont( const string &name, Font *font )
 		{
 			mFonts[ name ] = font;
 		}
@@ -282,7 +324,7 @@ namespace Edge
 		 *
 		 *
 		 */
-		void modifyName( string &name );
+		void _modifyName( string &name );
 
 	protected:
 		/// 
