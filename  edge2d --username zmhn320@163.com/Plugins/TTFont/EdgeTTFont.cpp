@@ -348,7 +348,7 @@ namespace Edge
 	Font *TTFontFactory::createFont( const string &name, const FontParam &param )
 	{
 		/// check whether the font is already created
-		Font *font = getFont( name );
+		Font *font = _selfGetFont( name );
 		if( font != NULL )
 		{
 			LogManager::getSingleton().logMessage( LL_WARNING, "The font : " + name + " is already created" );
@@ -358,7 +358,7 @@ namespace Edge
 		font = new TTFont( this, name );
 		font->create( param );
 
-		saveFont( name, font );
+		_saveFont( name, font );
 
 		return font;
 	}
@@ -366,10 +366,10 @@ namespace Edge
 	Font *TTFontFactory::createFont( const string &name, const string &file )
 	{
 		string cfile( file );
-		modifyName( cfile );
+		_modifyName( cfile );
 
 		/// check whether the font is already created
-		Font *font = getFont( name );
+		Font *font = _selfGetFont( name );
 		if( font != NULL )
 		{
 			LogManager::getSingleton().logMessage( LL_WARNING, "The font : " + name + " is already created" );
@@ -389,7 +389,7 @@ namespace Edge
 		font = new TTFont( this, name );
 		font->create( stream );
 
-		saveFont( name, font );
+		_saveFont( name, font );
 		return font;
 
 	}

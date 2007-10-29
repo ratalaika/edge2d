@@ -23,8 +23,7 @@ namespace Edge
 		return ::DefWindowProc( hWnd, message, wParam, lParam );
 	}
 
-	Win32Window::Win32Window() : Window()//,
-		//mIconRes( "" )
+	Win32Window::Win32Window() : Window()
 	{
 		mIconRes = 0;
 		memset( &mWndClass, 0, sizeof( mWndClass ) );

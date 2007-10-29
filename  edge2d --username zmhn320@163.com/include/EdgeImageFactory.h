@@ -1,8 +1,27 @@
-/**
- *
- *
- *
- */
+/*
+-----------------------------------------------------------------------------
+This source file is part of EDGE
+ (A very object-oriented and plugin-based 2d game engine)
+For the latest info, see http://edge2d.googlecode.com
+
+Copyright (c) 2007-2008 The EDGE Team
+Also see acknowledgements in Readme.html
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+Place - Suite 330, Boston, MA 02111-1307, USA, or go to
+http://www.gnu.org/copyleft/lesser.txt.
+-----------------------------------------------------------------------------
+*/
 #ifndef EDGE_IMAGEFACTORY_H
 #define EDGE_IMAGEFACTORY_H
 
@@ -17,10 +36,11 @@ using std::string;
 namespace Edge
 {
 	/**
-	 * ImageFactory will create Images for you, and if you specified, it will
-	 * also maintain the Image's pointer, and later you should delete it.
+	 * ImageFactory will create Images for you, and it will
+	 * also maintain the Image's pointer, and later you should delete the image
+	 * use destroy function.
 	 *
-	*/
+	 */
 	class EDGE_EXPORT ImageFactory 
 	{
 	public:
@@ -50,14 +70,6 @@ namespace Edge
 
 		/**
 		 * createImage
-		 * this function will not save the pointer, and when the returned value
-		 * is destroyed, the Image object also will be destroyed. 
-		 */
-		//virtual ImagePtr	createImage( const string &archiveName, const string &file ) = 0;
-		//virtual ImagePtr	createImage( int width, int height ) = 0;
-
-		/**
-		 * createImage
 		 * this function will save the pointer, and you can get the created image by its full path name.
 		 * If there is an image which has the same archive name and file name in the image list, this 
 		 * function will not create the image, and only return the created image in the list.
@@ -65,28 +77,35 @@ namespace Edge
 		 * Note : file parameter contains the archive name and the file name, they are separated by ':'
 		 * i.e : ./data:image.png 
 		 */
-		virtual Image*		createImage( const string &file ) = 0;
-		virtual Image*		createImage( const string &name, int width, int height ) = 0;
+		virtual Image* createImage( const string &file ) = 0;
+
+		/**
+		 * create an image without data.Maybe you want to write data onto the image through lock/unlock
+		 * function.
+		 *
+		 */
+		virtual Image* createImage( const string &name, int width, int height ) = 0;
 
 		/**
 		 * copy an image from an exist image
 		 *
+		 * @remarks if you want to create an image which is a part of another image, you should call
+		 * this function.
 		 */
-		virtual Image*		copyImage( const string &name, const string &origin, float x, float y, float w, float h ) = 0;
+		virtual Image* copyImage( const string &name, const string &origin, float x, float y, float w, float h ) = 0;
 
-		//virtual Image*		createImage( const string &name, int width, int height ) = 0;
-
-		//virtual ImagePtr	createTarget( const string &archiveName, const string &file ) = 0;
-		//virtual ImagePtr	createTarget( int width, int height ) = 0;
-
-		//virtual Image*		createTarget( const string &name, const string &archiveName, const string &file ) = 0;
-		virtual Image*		createTarget( const string &name, int width, int height ) = 0;
-		
 		/**
-		 * getImage
+		 * create a render target. 
+		 * @remarks a render target can be render anything onto it.
 		 *
 		 */
-		Image*		getImage( const string &name );
+		virtual Image* createTarget( const string &name, int width, int height ) = 0;
+		
+		/**
+		 * get an image/target you have created before.
+		 *
+		 */
+		Image* getImage( const string &name );
 
 		/**
 		 * removeImage
@@ -94,14 +113,19 @@ namespace Edge
 		 * Image object from memory
 		 * 
 		 */
-		void		removeImage( const string &name );
-		void		removeImage( Image *image );
+		void removeImage( const string &name );
 
 		/**
-		 * removeAllImages
+		 * remove an image directly.
 		 *
 		 */
-		void		removeAllImages();
+		void removeImage( Image *image );
+
+		/**
+		 * removeAllImages, called by the destructor.
+		 *
+		 */
+		void removeAllImages();
 
 		
 		/**
@@ -112,18 +136,25 @@ namespace Edge
 		virtual void notifyDeath( const Image *image ) {}
 
 	protected:
+		
+		/**
+		 * selfGetImage, this class will use it to check whether the image is already exist.
+		 *
+		 */
+		Image *_selfGetImage( const string &name );
+
 		/**
 		 * saveImage, save the image object in the list
 		 *
 		 */
-		void saveImage( const string &name, Image *image );
+		void _saveImage( const string &name, Image *image );
 
 		/**
 		 * modifyName, modify the image's name so that it's the correct format. 
 		 * the correct format is like : ./data/image.jpg
 		 *
 		 */
-		void modifyName( string &name );
+		void _modifyName( string &name );
 
 	protected:
 		/// 

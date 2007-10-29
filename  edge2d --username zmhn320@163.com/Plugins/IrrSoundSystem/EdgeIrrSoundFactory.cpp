@@ -153,10 +153,10 @@ namespace Edge
 	Sound *IrrSoundFactory::createSound( const string &file )
 	{
 		string cfile( file );
-		modifyName( cfile );
+		_modifyName( cfile );
 
 		/// check whether the sound is already created
-		Sound *sound = getSound( cfile );
+		Sound *sound = _selfGetSound( cfile );
 		if( sound != NULL )
 		{
 			LogManager::getSingleton().logMessage( LL_WARNING, "The sound : " + cfile + " is already created" );
@@ -166,7 +166,7 @@ namespace Edge
 		sound = new IrrSound( cfile, mSoundEngine );
 		sound->create();
 
-		saveSound( sound );
+		_saveSound( sound );
 		return sound;
 	}
 }

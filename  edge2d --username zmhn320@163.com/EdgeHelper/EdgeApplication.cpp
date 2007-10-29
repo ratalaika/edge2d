@@ -14,7 +14,7 @@
 namespace Edge
 {
 	Application::Application() :
-		mLogFile( "Edge.log" ), mConfigFile( "config.cfg" ), mCaption( "Edge Window" )
+		mLogFile( "Edge.log" ), mPluginFile( "plugin.ini" ), mCaption( "Edge Window" )
 	{
 		mWidth = 800;
 		mHeight = 600;
@@ -136,11 +136,22 @@ namespace Edge
 		preinit();
 	}
 
+	void Application::OnGetFocus()
+	{ 
+		mbActive = true; 
+		mLastTime = EdgeEngine::getSingleton().getTimer()->getCurTime();
+	}
+
+	void Application::OnLostFocus()
+	{
+		mbActive = false;
+	}
+
 	/////////////////////////////////////////////////////////////////////////////////////////
 	void Application::loadPlugins()
 	{
 		char file[64];
-		FILE *fp = fopen( mConfigFile.c_str(), "r" );
+		FILE *fp = fopen( mPluginFile.c_str(), "r" );
 
 		EdgeEngine *engine = EdgeEngine::getSingletonPtr();
 

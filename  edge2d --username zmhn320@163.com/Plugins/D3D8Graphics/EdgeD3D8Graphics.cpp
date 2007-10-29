@@ -384,9 +384,9 @@ namespace Edge
 		m_pD3DDevice->SetRenderState( D3DRS_ZENABLE, D3DZB_FALSE );
 
 		/// to avoid some bugs on some vider card
-		m_pD3DDevice->SetTextureStageState( 0, D3DTSS_MIPFILTER, D3DTEXF_POINT );
-		m_pD3DDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_LINEAR );
-		m_pD3DDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_LINEAR );
+		//m_pD3DDevice->SetTextureStageState( 0, D3DTSS_MIPFILTER, D3DTEXF_POINT );
+		//m_pD3DDevice->SetTextureStageState( 0, D3DTSS_MAGFILTER, D3DTEXF_LINEAR );
+		//m_pD3DDevice->SetTextureStageState( 0, D3DTSS_MINFILTER, D3DTEXF_LINEAR );
 	}
 
 	bool	D3D8Graphics::_createVertexData()

@@ -1,8 +1,27 @@
-/**
- *
- *
- *
- */
+/*
+-----------------------------------------------------------------------------
+This source file is part of EDGE
+ (A very object-oriented and plugin-based 2d game engine)
+For the latest info, see http://edge2d.googlecode.com
+
+Copyright (c) 2007-2008 The EDGE Team
+Also see acknowledgements in Readme.html
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+Place - Suite 330, Boston, MA 02111-1307, USA, or go to
+http://www.gnu.org/copyleft/lesser.txt.
+-----------------------------------------------------------------------------
+*/
 #ifndef EDGE_EXCEPTION_H
 #define EDGE_EXCEPTION_H
 
@@ -16,7 +35,9 @@ using std::string;
 namespace Edge
 {
 	/**
-	 * Exception class
+	 * Exception class. 
+	 * @remarks In edge, when an error occured, the engine will throw an exception instead the
+	 * return value of a function. 1
 	 *
 	 */
 	class EDGE_EXPORT Exception
@@ -61,13 +82,17 @@ namespace Edge
 		virtual ~Exception();
 
 		/**
-		 * getFullDescription
+		 * Returns a string with the full description of this error.
+		 * @remarks The description contains the error number, the description
+         * supplied by the thrower, what routine threw the exception,
+         * and will also supply extra platform-specific information
+         * where applicable. 
 		 *
 		 */
 		virtual string	getFullDescription();
 
 		/**
-		 * getCode
+		 * getCode, get the error code.
 		 *
 		 */
 		EExceptionCodes	getCode() { return mCode; }

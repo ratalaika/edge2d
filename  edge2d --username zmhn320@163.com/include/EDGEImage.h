@@ -1,7 +1,26 @@
-/* Experiment for EDGE Graphics Module 
-*
-* Kevin Lynx
-* 10.6.2007
+/*
+-----------------------------------------------------------------------------
+This source file is part of EDGE
+ (A very object-oriented and plugin-based 2d game engine)
+For the latest info, see http://edge2d.googlecode.com
+
+Copyright (c) 2007-2008 The EDGE Team
+Also see acknowledgements in Readme.html
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+Place - Suite 330, Boston, MA 02111-1307, USA, or go to
+http://www.gnu.org/copyleft/lesser.txt.
+-----------------------------------------------------------------------------
 */
 #ifndef EDGE_IMAGE_H
 #define EDGE_IMAGE_H
@@ -20,15 +39,17 @@ namespace Edge
 	class ImageFactory;
 
 	/**
-	* Image
-	*
-	* an image implents a bitmap, a picture,a render target
-	* You can render an image on to screen, other image.
-	* An image is always 32-bits.
-	*
-	* An Image's name is its full path like : .\\data\\image.jpg, the name is automatically
-	* made, and  you can get an image by the full path name later. 
-	*/
+	 * Image
+	 *
+	 * an image implents a bitmap, a picture,a render target
+	 * You can render an image on to screen, other image.
+	 * An image is always 32-bits.
+	 *
+	 * An Image's name is its full path like : .\\data\\image.jpg, the name is automatically
+	 * made, and  you can get an image by the full path name later.
+     *
+     * You can create an Image by 
+	 */
 	class EDGE_EXPORT Image
 	{
 	public:
@@ -44,32 +65,39 @@ namespace Edge
 
 	public:
 		/**
-		* Constructor
-		*
-		*/
+ 		 * Constructor
+		 *
+		 */
 		Image( const string &name, ImageFactory *parent, Graphics *graphics, EImageType type = IT_IMAGE ) ;
 
 		/**
-		* Destructor
-		*
-		*/
+		 * Destructor
+		 *
+		 */
 		virtual ~Image() {}
 
 		/**
-		* initiate
-		*
-		*/
+		 * create an image.
+		 *
+		 * @remarks this function is only used to create an IT_IMAGE type image. An IT_IMAGE type
+		 * image will hold image data.But an IT_TARGET willnot.
+		 */
 		virtual bool    create( ImageDataPtr imageData ) = 0;
+
+		/**
+		 * create an image or a render target.
+		 *
+		 */
 		virtual bool	create( int width, int height ) = 0;
 
 		/**
-		 * release
+		 * release, called by destructor
 		 *
 		 */
 		virtual void	release() = 0;
 
 		/**
-		 * clone an image
+		 * clone an image.
 		 *
 		 */
 		virtual Image *clone( const string &name, float x, float y, float w, float h ) = 0;
@@ -77,6 +105,7 @@ namespace Edge
 		/**
 		 * lock the image, so you can access data directly.
 		 *
+		 * @warning only an IT_IMAGE type image can be locked.
 		 */
 		virtual void	*lock( int left = 0, int top = 0, int width = 0, int height = 0, 
 					  		   bool bReadOnly = true ) { return 0 ;}
@@ -87,6 +116,10 @@ namespace Edge
 		 */
 		virtual void	unlock() {};
 
+		/**
+		 * set the image's renderer mode.
+		 *
+		 */
 		virtual void	setRenderMode( int mode ) {}
 
 		/**
@@ -169,11 +202,29 @@ namespace Edge
 		 *
 		 */
 		virtual int getWidth( bool bOriginal = false )  const { return bOriginal ? mOriWidth : mWidth;   }
+
+		/**
+		 * get the image's height.
+		 *
+		 */
 		virtual int getHeight( bool bOriginal = false ) const { return bOriginal ? mOriHeight : mHeight; }
 
+		/**
+		 * get the image's type. IT_IMAGE or IT_TARGET.
+		 *
+		 */
 		int getType()   const { return mType; }
+
+		/**
+		 * get the image's name.
+		 *
+		 */
 		string &getName()     { return mName;  }
 
+		/**
+		 * get the image's color.
+		 *
+		 */
 		virtual Color getColor( int index = 0 ) = 0;
 	
 	protected:

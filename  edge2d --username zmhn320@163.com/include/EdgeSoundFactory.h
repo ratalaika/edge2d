@@ -1,7 +1,27 @@
-/**
- *
- *
- */
+/*
+-----------------------------------------------------------------------------
+This source file is part of EDGE
+ (A very object-oriented and plugin-based 2d game engine)
+For the latest info, see http://edge2d.googlecode.com
+
+Copyright (c) 2007-2008 The EDGE Team
+Also see acknowledgements in Readme.html
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+Place - Suite 330, Boston, MA 02111-1307, USA, or go to
+http://www.gnu.org/copyleft/lesser.txt.
+-----------------------------------------------------------------------------
+*/
 #ifndef EDGE_SOUNDFACTORY_H
 #define EDGE_SOUNDFACTORY_H
 
@@ -96,6 +116,11 @@ namespace Edge
 		 *
 		 */
 		virtual void destroySound( Sound *sound ) ;
+
+		/**
+		 * destroy a sound
+		 *
+		 */
 		virtual void destroySound( const string &name ) ;
 
 		/**
@@ -104,14 +129,26 @@ namespace Edge
 		 */
 		virtual void destroyAllSounds() ;
 
+	protected:
+
 		/**
 		 * save sound in the sound list
 		 *
 		 */
-		virtual void saveSound( Sound *sound ) ;
+		void _saveSound( Sound *sound ) ;
 
-	protected:
-		void modifyName( string &name );
+		/**
+		 * selfGetSound, this class will use it to check whether the sound is already exist.
+		 *
+		 */
+		Sound *_selfGetSound( const string &name );
+
+		/**
+		 * modify the name to the correct format
+		 *
+		 */
+		void _modifyName( string &name );
+
 	protected:
 		/// sound list
 		SoundMap mSounds;
