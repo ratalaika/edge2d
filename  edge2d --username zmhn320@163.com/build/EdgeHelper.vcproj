@@ -171,6 +171,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\EdgeHelper\EdgeINIParser.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\EdgeHelper\EdgeResourceManager.cpp"
 				>
 			</File>
@@ -202,6 +206,10 @@
 			</File>
 			<File
 				RelativePath="..\include\helper\EdgeHelper.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\helper\EdgeINIParser.h"
 				>
 			</File>
 			<File
