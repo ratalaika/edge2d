@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="Win32System"
-	ProjectGUID="{117C5F34-B83F-4E43-ACA8-F1BAD859BA07}"
-	RootNamespace="Win32Window"
+	Name="OISInputSystem"
+	ProjectGUID="{12A478DA-2560-41A2-A7B1-4CB496588998}"
+	RootNamespace="OISInputManager"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -17,8 +17,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="../tmp/win32system_d"
-			IntermediateDirectory="../tmp/win32system_d"
+			OutputDirectory="../../tmp/oisInputsystemd"
+			IntermediateDirectory="../../tmp/oisInputsystemd"
 			ConfigurationType="2"
 			CharacterSet="2"
 			>
@@ -40,8 +40,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;WIN32WINDOW_EXPORTS"
+				AdditionalIncludeDirectories="../../include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;OISINPUTMANAGER_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -61,13 +61,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="EdgeBase_D.lib"
-				OutputFile="../dll/debug/Win32System_D.dll"
+				AdditionalDependencies="EdgeBase_D.lib ois_static_d.lib"
+				OutputFile="../../bin/plugins/debug/OISInputSystem_D.dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="../lib"
+				AdditionalLibraryDirectories="../../lib;../../plugins/OISInputSystem/OIS/lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
-				ImportLibrary="../lib/Win32System_D.lib"
+				ImportLibrary="../../lib/plugin_lib/OISInputSystem_D.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -97,8 +97,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="../tmp/win32system"
-			IntermediateDirectory="../tmp/win32system"
+			OutputDirectory="../../tmp/oisInputsystem"
+			IntermediateDirectory="../../tmp/oisInputsystem"
 			ConfigurationType="2"
 			CharacterSet="2"
 			WholeProgramOptimization="1"
@@ -120,8 +120,8 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;WIN32WINDOW_EXPORTS"
+				AdditionalIncludeDirectories="../../include"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;OISINPUTMANAGER_EXPORTS"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -139,15 +139,15 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="EdgeBase.lib"
-				OutputFile="../dll/release/Win32System.dll"
+				AdditionalDependencies="EdgeBase.lib ois_static.lib"
+				OutputFile="../../bin/plugins/release/OISInputSystem.dll"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="../lib"
+				AdditionalLibraryDirectories="../../lib;../../plugins/OISInputSystem/OIS/lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="../lib/Win32System.lib"
+				ImportLibrary="../../lib/plugin_lib/OISInputSystem.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -180,42 +180,28 @@
 	</References>
 	<Files>
 		<Filter
-			Name="源文件"
+			Name="Source Files"
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\Plugins\Win32Window\EdgeWin32SystemPlugin.cpp"
+				RelativePath="..\..\Plugins\OISInputSystem\EdgeOISInputManager.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\Plugins\Win32Window\EdgeWin32Timer.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\Plugins\Win32Window\EdgeWin32Window.cpp"
+				RelativePath="..\..\Plugins\OISInputSystem\EdgeOISInputManagerPlugin.cpp"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="头文件"
+			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\Plugins\Win32Window\EdgeWin32Timer.h"
+				RelativePath="..\..\Plugins\OISInputSystem\EdgeOISInputManager.h"
 				>
 			</File>
-			<File
-				RelativePath="..\Plugins\Win32Window\EdgeWin32Window.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="资源文件"
-			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
-			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
-			>
 		</Filter>
 	</Files>
 	<Globals>
