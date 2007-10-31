@@ -96,10 +96,29 @@ bool MyApp::update()
 	if( im->isKeyDown( Edge::KC_RETURN ) &&
 		im->isModifierKeyDown( Edge::MKC_ALT ) )
 	{
-		EdgeEngine::getSingleton().resetWindow( mWidth, mHeight, !mbWindowed );
 		mbWindowed = !mbWindowed;
+		EdgeEngine::getSingleton().resetWindow( mWidth, mHeight, mbWindowed );
 		/// save to ini
 		mIniParser.writeBool( "Game", "windowed", mbWindowed );
+	}
+
+	if( im->isKeyDown( Edge::KC_F2 ) )
+	{
+		EdgeEngine::getSingleton().resetWindow( 640, 480, true );
+	}
+
+	if( im->isKeyDown( Edge::KC_F3 ) )
+	{
+		EdgeEngine::getSingleton().resetWindow( 800, 600, true );
+	}
+
+	if( im->isKeyDown( Edge::KC_F6 ) )
+	{
+		mbWindowed = !mbWindowed;
+		EdgeEngine *engine = EdgeEngine::getSingletonPtr();
+		engine->getGraphics()->reset( mWidth, mHeight, mbWindowed );
+		engine->getWindow()->reset( mWidth, mHeight, mbWindowed );
+		engine->getInputManager()->reset( mWidth, mHeight );
 	}
 
 	return true;

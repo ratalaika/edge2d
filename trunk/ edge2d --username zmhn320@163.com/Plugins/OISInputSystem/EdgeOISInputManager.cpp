@@ -7,11 +7,6 @@
 #include "EdgeLogManager.h"
 #include <sstream>
 
-#ifdef EDGE_DEBUG
-#pragma comment( lib, "OIS_static_d.lib" )
-#else
-#pragma comment( lib, "OIS_static.lib" )
-#endif
 
 namespace Edge
 {
