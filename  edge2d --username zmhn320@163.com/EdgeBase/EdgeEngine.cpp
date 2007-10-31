@@ -133,8 +133,8 @@ namespace Edge
 	
 	void	EdgeEngine::resetWindow( int width, int height, bool bWindowed, int bits )
 	{
-		mWindow->reset( width, height, bWindowed );
 		mGraphics->reset( width, height, bWindowed, bits );	
+		mWindow->reset( width, height, bWindowed );
 		mInputManager->reset( width, height );
 	}
 
