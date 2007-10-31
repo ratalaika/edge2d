@@ -6,12 +6,6 @@
 #include "EdgeFIImageCodec.h"
 #include "FreeImage/FreeImage.h"
 
-#ifdef _DEBUG
-#pragma comment( lib, "../Plugins/FIImageCodec/FreeImage/FreeImaged.lib" )
-#else
-#pragma comment( lib, "../Plugins/FIImageCodec/FreeImage/FreeImage.lib" )
-#endif
-
 namespace Edge
 {
 	/// to catch the message sent by FreeImage library

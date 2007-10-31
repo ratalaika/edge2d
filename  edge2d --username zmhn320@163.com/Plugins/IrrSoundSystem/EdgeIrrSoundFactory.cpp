@@ -11,8 +11,6 @@
 #include "EdgeIrrSound.h"
 #include "irrKlang/include/irrKlang.h"
 
-#pragma comment( lib, "../plugins/IrrSoundSystem/irrKlang/lib/irrKlang.lib" )
-
 namespace irr
 {
 	namespace io
