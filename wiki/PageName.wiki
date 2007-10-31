@@ -1,4 +1,5 @@
 #summary One-sentence summary of this page.
+#labels edge,development,kevinlynx,KevinLynx
 
 = Develop log =
 
@@ -21,3 +22,14 @@ There still has a bug on some ATI video cards. The texture cannot be rendered co
 I have fixed the bug talked before. The reason is the difference between nvidia card and ati card. When i create a d3d texture and the size is not a power of 2, nvidia will create it if the card support. But on ati card, it's difference, it will pad the size to be a power of 2 automatically. Maybe it's the difference that D3DXCreateTexture performes on nvidia and ati card. Anyway, i always use the texture original size. So that works correctly. 
 
 I upload the new version of CrazyEggsEdge. 
+
+10.31.2007
+
+Today i commit all the source code and vs2005 binary file to this svn server. And i have already written some examples so that you can learn quickly. 
+
+And currently the svn contains  : 
+- full source code including EdgeBase and all plugin source, 
+- binray files compiled by vs2005, 
+- an api document compiled chm version which is created automatically by doxygen, 
+- 6 examples from the basic hello world application to a more complicated one,
+- lzo tool to create lzo archive and animation tool to create an animation file
