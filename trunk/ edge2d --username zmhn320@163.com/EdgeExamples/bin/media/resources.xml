@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EdgeResourceFile>
+  <Resources id="Game">
+    <Archive path="./media/res.lzo" type="Lzo">
+      <res type="Image" id="logo" path="edge_logo.jpg" />
+      <res type="Sound" id="back" path="getout.ogg" />
+      <res type="Sound" id="click" path="logo.wav" />
+      <res type="Font" id="normal_font" path="font.fnt" />
+    </Archive>
+    <Archive path="./media" type="FileSystem">
+     <res type="Anim" id="done" path="done.anim" />
+    </Archive>       
+  </Resources>
+</EdgeResourceFile>

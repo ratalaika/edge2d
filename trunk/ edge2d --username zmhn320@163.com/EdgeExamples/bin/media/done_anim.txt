@@ -1,0 +1,54 @@
+4
+16
+walk_down
+0.1
+-1
+4
+0 3
+walk_left
+0.1
+-1
+4
+4 7
+walk_right
+0.1
+1
+4
+8 11
+walk_up
+0.1
+-1
+4 
+12 15
+./media:done.png
+0 0 100 100
+./media:done.png
+100 0 100 100
+./media:done.png
+200 0 100 100
+./media:done.png
+300 0 100 100
+./media:done.png
+0 100 100 100
+./media:done.png
+100 100 100 100
+./media:done.png
+200 100 100 100
+./media:done.png
+300 100 100 100
+./media:done.png
+0 200 100 100
+./media:done.png
+100 200 100 100
+./media:done.png
+200 200 100 100
+./media:done.png
+300 200 100 100
+./media:done.png
+0 300 100 100
+./media:done.png
+100 300 100 100
+./media:done.png
+200 300 100 100
+./media:done.png
+300 300 100 100
