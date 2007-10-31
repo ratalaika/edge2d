@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "EDGE_4.vcproj", "{55D04F88-CEAF-4157-824F-B5795A9323A9}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EdgeBase", "EdgeBase.vcproj", "{F6C6D573-D042-4BE9-BF3D-4C2D61CE6988}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D3D8Font", "D3D8Font.vcproj", "{3976D7CF-7C5D-4300-91DF-EBA956FF6FBA}"
@@ -35,10 +33,6 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{55D04F88-CEAF-4157-824F-B5795A9323A9}.Debug|Win32.ActiveCfg = Debug|Win32
-		{55D04F88-CEAF-4157-824F-B5795A9323A9}.Debug|Win32.Build.0 = Debug|Win32
-		{55D04F88-CEAF-4157-824F-B5795A9323A9}.Release|Win32.ActiveCfg = Release|Win32
-		{55D04F88-CEAF-4157-824F-B5795A9323A9}.Release|Win32.Build.0 = Release|Win32
 		{F6C6D573-D042-4BE9-BF3D-4C2D61CE6988}.Debug|Win32.ActiveCfg = Debug|Win32
 		{F6C6D573-D042-4BE9-BF3D-4C2D61CE6988}.Debug|Win32.Build.0 = Debug|Win32
 		{F6C6D573-D042-4BE9-BF3D-4C2D61CE6988}.Release|Win32.ActiveCfg = Release|Win32

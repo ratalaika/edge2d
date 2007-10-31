@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="EdgeHelper"
-	ProjectGUID="{0B43717C-948B-4E0C-8780-0D8F4FC0561E}"
-	RootNamespace="EdgeHelper"
+	Name="D3D8Graphics"
+	ProjectGUID="{DF59364B-7FFA-49FF-A3D7-4E939E21E60E}"
+	RootNamespace="D3D8Graphics"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -17,9 +17,9 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="../tmp/edgehelperd"
-			IntermediateDirectory="../tmp/edgehelperd"
-			ConfigurationType="4"
+			OutputDirectory="../../tmp/d3d8graphics_d"
+			IntermediateDirectory="../../tmp/d3d8graphics_d"
+			ConfigurationType="2"
 			CharacterSet="2"
 			>
 			<Tool
@@ -40,8 +40,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../include;../include/helper;../Dependencies/tinyxml"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+				AdditionalIncludeDirectories="../../include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;D3D8GRAPHICS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -60,13 +60,22 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				AdditionalDependencies="EdgeBase_D.lib tinyxml.lib"
-				OutputFile="../lib/EdgeHelper_D.lib"
-				AdditionalLibraryDirectories="../lib;../Dependencies/tinyxml"
+				Name="VCLinkerTool"
+				AdditionalDependencies="EdgeBase_D.lib"
+				OutputFile="../../bin/plugins/debug/D3D8Graphics_D.dll"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories="../../lib"
+				IgnoreDefaultLibraryNames="libci.lib"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				ImportLibrary="../../lib/plugin_lib/D3D8Graphics_D.lib"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -78,14 +87,20 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="../tmp/edgehelper"
-			IntermediateDirectory="../tmp/edgehelper"
-			ConfigurationType="4"
+			OutputDirectory="../../tmp/d3d8graphics"
+			IntermediateDirectory="../../tmp/d3d8graphics"
+			ConfigurationType="2"
 			CharacterSet="2"
 			WholeProgramOptimization="1"
 			>
@@ -106,8 +121,8 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../include;../include/helper;../Dependencies/tinyxml"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
+				AdditionalIncludeDirectories="../../include"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;D3D8GRAPHICS_EXPORTS"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -124,13 +139,24 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				AdditionalDependencies="EdgeBase.lib tinyxml.lib"
-				OutputFile="../lib/EdgeHelper.lib"
-				AdditionalLibraryDirectories="../lib;../Dependencies/tinyxml"
+				Name="VCLinkerTool"
+				AdditionalDependencies="EdgeBase.lib"
+				OutputFile="../../bin/plugins/release/D3D8Graphics.dll"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="../../lib"
+				IgnoreDefaultLibraryNames="libci.lib"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="../../lib/plugin_lib/D3D8Graphics.lib"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -142,6 +168,12 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
@@ -150,78 +182,44 @@
 	</References>
 	<Files>
 		<Filter
-			Name="源文件"
+			Name="Source Files"
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\EdgeHelper\EdgeAnimSprite.cpp"
+				RelativePath="..\..\Plugins\D3D8Graphics\EdgeD3D8Graphics.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\EdgeHelper\EdgeAnimSpriteFactory.cpp"
+				RelativePath="..\..\Plugins\D3D8Graphics\EdgeD3D8GraphicsPlugin.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\EdgeHelper\EdgeApplication.cpp"
+				RelativePath="..\..\Plugins\D3D8Graphics\EdgeD3D8Image.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\EdgeHelper\EdgeFadeImage.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\EdgeHelper\EdgeINIParser.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\EdgeHelper\EdgeResourceManager.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\EdgeHelper\EdgeWinMain.cpp"
+				RelativePath="..\..\Plugins\D3D8Graphics\EdgeD3D8ImageFactory.cpp"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="头文件"
+			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\include\helper\EdgeAnimSprite.h"
+				RelativePath="..\..\Plugins\D3D8Graphics\EdgeD3D8Graphics.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\helper\EdgeAnimSpriteFactory.h"
+				RelativePath="..\..\Plugins\D3D8Graphics\EdgeD3D8Image.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\helper\EdgeApplication.h"
+				RelativePath="..\..\Plugins\D3D8Graphics\EdgeD3D8ImageFactory.h"
 				>
 			</File>
-			<File
-				RelativePath="..\include\helper\EdgeFadeImage.h"
-				>
-			</File>
-			<File
-				RelativePath="..\include\helper\EdgeHelper.h"
-				>
-			</File>
-			<File
-				RelativePath="..\include\helper\EdgeINIParser.h"
-				>
-			</File>
-			<File
-				RelativePath="..\include\helper\EdgeResourceManager.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="资源文件"
-			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
-			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
-			>
 		</Filter>
 	</Files>
 	<Globals>

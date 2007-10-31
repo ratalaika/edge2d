@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="EdgeGUI"
-	ProjectGUID="{326C7158-B647-4981-8734-FB33093549F5}"
-	RootNamespace="EdgeGUI"
+	Name="ZipArchive"
+	ProjectGUID="{B858E306-E255-4CC9-8B1F-4BD94CB3D542}"
+	RootNamespace="ZipArchive"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -17,9 +17,9 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="../tmp/edgeguid"
-			IntermediateDirectory="../tmp/edgeguid"
-			ConfigurationType="4"
+			OutputDirectory="../../tmp/ziparchived"
+			IntermediateDirectory="../../tmp/ziparchived"
+			ConfigurationType="2"
 			CharacterSet="2"
 			>
 			<Tool
@@ -40,8 +40,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../include;../include/edgegui"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+				AdditionalIncludeDirectories="../../include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;ZIPARCHIVE_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -49,6 +49,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -60,13 +61,21 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
+				Name="VCLinkerTool"
 				AdditionalDependencies="EdgeBase_D.lib"
-				OutputFile="../lib/EdgeGUI_D.lib"
-				AdditionalLibraryDirectories="../lib"
+				OutputFile="../../bin/plugins/debug/ZipArchive_D.dll"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories="../../lib"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				ImportLibrary="../../lib/plugin_lib/ZipArchive_D.lib"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -78,14 +87,20 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="../tmp/edgegui"
-			IntermediateDirectory="../tmp/edgegui"
-			ConfigurationType="4"
+			OutputDirectory="../../tmp/ziparchive"
+			IntermediateDirectory="../../tmp/ziparchive"
+			ConfigurationType="2"
 			CharacterSet="2"
 			WholeProgramOptimization="1"
 			>
@@ -106,8 +121,8 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../include;../include/edgegui"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
+				AdditionalIncludeDirectories="../../include"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;ZIPARCHIVE_EXPORTS"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -124,13 +139,23 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
+				Name="VCLinkerTool"
 				AdditionalDependencies="EdgeBase.lib"
-				OutputFile="../lib/EdgeGUI.lib"
-				AdditionalLibraryDirectories="../lib"
+				OutputFile="../../bin/plugins/release/ZipArchive.dll"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="../../lib"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="../../lib/plugin_lib/ZipArchive.lib"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -142,6 +167,12 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
@@ -150,50 +181,36 @@
 	</References>
 	<Files>
 		<Filter
-			Name="源文件"
+			Name="Source Files"
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\EdgeGUI\EdgeGUIButton.cpp"
+				RelativePath="..\..\Plugins\ZipArchive\EdgeZipArchive.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\EdgeGUI\EdgeGUIManager.cpp"
+				RelativePath="..\..\Plugins\ZipArchive\EdgeZipArchivePlugin.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\EdgeGUI\EdgeGUIWidget.cpp"
+				RelativePath="..\..\Plugins\ZipArchive\unzip\unzip.cpp"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="头文件"
+			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\include\edgegui\EdgeGUI.h"
+				RelativePath="..\..\Plugins\ZipArchive\EdgeZipArchive.h"
 				>
 			</File>
 			<File
-				RelativePath="..\include\edgegui\EdgeGUIButton.h"
+				RelativePath="..\..\Plugins\ZipArchive\unzip\unzip.h"
 				>
 			</File>
-			<File
-				RelativePath="..\include\edgegui\EdgeGUIManager.h"
-				>
-			</File>
-			<File
-				RelativePath="..\include\edgegui\EdgeGUIWidget.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="资源文件"
-			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
-			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
-			>
 		</Filter>
 	</Files>
 	<Globals>
