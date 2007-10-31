@@ -28,8 +28,8 @@ I upload the new version of CrazyEggsEdge.
 Today i commit all the source code and vs2005 binary file to this svn server. And i have already written some examples so that you can learn quickly. 
 
 And currently the svn contains  : 
-* full source code including EdgeBase and all plugin source, 
-* binray files compiled by vs2005, 
-* an api document compiled chm version which is created automatically by doxygen, 
-* 6 examples from the basic hello world application to a more complicated one,
-* lzo tool to create lzo archive and animation tool to create an animation file
+- full source code including EdgeBase and all plugin source, 
+- binray files compiled by vs2005, 
+- an api document compiled chm version which is created automatically by doxygen, 
+- 6 examples from the basic hello world application to a more complicated one,
+- lzo tool to create lzo archive and animation tool to create an animation file
