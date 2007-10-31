@@ -1,0 +1,47 @@
+09:56:45: INFO    : Edge 0.1.0
+09:56:45: INFO    : Edge Engine Initiate
+09:56:45: INFO    : Added ArchiveFactory : FileSystem
+09:56:45: INFO    : Loading plugin : plugins\release\TTFont.dll
+09:56:45: INFO    : Loading plugin : plugins\release\D3D8Graphics.dll
+09:56:45: INFO    : Loading plugin : plugins\release\FIImageCodec.dll
+09:56:45: INFO    : Loading plugin : plugins\release\Win32System.dll
+09:56:45: INFO    : Loading plugin : plugins\release\OISInputSystem.dll
+09:56:45: INFO    : Loading plugin : plugins\release\IrrSoundSystem.dll
+09:56:45: INFO    : Loading plugin : plugins\release\LzoArchive.dll
+09:56:45: INFO    : Added ArchiveFactory : Lzo
+09:56:45: INFO    : Reset Display Mode : 800 x 600 x X8R8G8B8 Windowed
+09:56:45: INFO    : Add Archive ... Name : ./media/res.lzo Type : Lzo
+09:56:45: INFO    : Load Image : ./edge_logo.JPG : 264 * 106 * 24
+09:56:45: INFO    : Image Size : 264 x 106, D3D8 Texture Size : 264 x 106
+09:56:45: INFO    : Image Size : 256 x 256, D3D8 Texture Size : 256 x 256
+09:56:45: INFO    : Add Archive ... Name : ./media Type : FileSystem
+09:56:45: WARNING : Cannot find the AnimSprite : ./media:done.anim
+09:56:45: INFO    : Load Image : ./media/done.png : 400 * 400 * 32
+09:56:45: INFO    : Image Size : 400 x 400, D3D8 Texture Size : 400 x 400
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: WARNING : The image : ./media:done.png is already created!
+09:56:45: INFO    : Load Sound...: ./media/res.lzo:getout.ogg
+09:56:45: INFO    : Load Sound...: ./media/res.lzo:logo.wav
+09:56:55: INFO    : Destroy Archive ... Name : ./media Type : FileSystem
+09:56:55: INFO    : Destroy Archive ... Name : ./media/res.lzo Type : Lzo
+09:56:55: INFO    : Unload plugin : plugins\release\D3D8Graphics.dll
+09:56:55: INFO    : Unload plugin : plugins\release\FIImageCodec.dll
+09:56:55: INFO    : Unload plugin : plugins\release\IrrSoundSystem.dll
+09:56:55: INFO    : Unload plugin : plugins\release\LzoArchive.dll
+09:56:55: INFO    : Unload plugin : plugins\release\OISInputSystem.dll
+09:56:55: INFO    : Unload plugin : plugins\release\TTFont.dll
+09:56:55: INFO    : Unload plugin : plugins\release\Win32System.dll
+09:56:55: INFO    : Edge Engine Shutdown!
