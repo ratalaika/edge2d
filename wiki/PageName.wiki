@@ -33,3 +33,7 @@ And currently the svn contains  :
  * an api document compiled chm version which is created automatically by doxygen, 
  * 6 examples from the basic hello world application to a more complicated one,
  * lzo tool to create lzo archive and animation tool to create an animation file
+
+=====11.4.2007=====
+
+Today sea_bug built a online forum for Edge2d. I appreciate he did this for me for Edge. Thank you sea_bug. And the forum url is : http://bbs.gameres.com/showforum.asp?forumid=91 (A Chinese forum)
