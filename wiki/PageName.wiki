@@ -36,4 +36,4 @@ And currently the svn contains  :
 
 =====11.4.2007=====
 
-Today sea_bug built a online forum for Edge2d. I appreciate he did this for me for Edge. Thank you sea_bug. And the forum url is : http://bbs.gameres.com/showforum.asp?forumid=91 (A Chinese forum)
+Today sea_bug built an online forum for Edge2d. I appreciate he did this for me for Edge. Thank you sea_bug. And the forum url is : http://bbs.gameres.com/showforum.asp?forumid=91 (A Chinese forum)
