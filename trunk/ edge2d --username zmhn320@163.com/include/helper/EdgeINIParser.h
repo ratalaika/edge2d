@@ -57,6 +57,7 @@ namespace Edge
 	 * ini parser to parse many ini files, everytime you want to parser other ini file, you 
 	 * should call create function.
 	 * Both the key and the value can contain space character like : window caption = Edge Window
+	 * You can use ";","#"  to comment one line.
 	 * @warning this class only support 256 characters in one line.
 	 */
 	class IniParser

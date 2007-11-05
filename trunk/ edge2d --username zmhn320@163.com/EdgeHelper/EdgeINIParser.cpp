@@ -206,6 +206,11 @@ namespace Edge
 			{
 				continue;
 			}
+			/// igone comment
+			if( line.at( pos ) == ';' || line.at( pos ) == '#' )
+			{
+				continue;
+			}
 
 			/// find section ?
 			if( line.at( pos ) == '[' )

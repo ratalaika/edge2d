@@ -83,6 +83,18 @@ namespace Edge
 		
 		/**
 		 *
+		 *
+		 */
+		bool isKeyJustDown( EKeyCode key );
+
+		/**
+		 *
+		 *
+		 */
+		bool isKeyJustUp( EKeyCode key );
+
+		/**
+		 *
 		 */
 		bool isModifierKeyDown( EMoKeyCode key );
 
