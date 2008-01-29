@@ -5,9 +5,15 @@
  * Lzo tool author : Kevin Lynx
  * Date : 10.20.2007
  *
+ * bugs:
+ * 1.当遍历指定后缀的文件名时，无法进行递归。因为这个时候FindNextFile查找不到文件夹了。
+ *   解决办法：始终采用*.*查找文件，当查找到文件时，自己比较其后缀，如果是文件夹，则不处理。
+ *
+ * 1.29.2008 支持查找多个后缀的文件，即指定多个后缀查找。lzo -rp *.cpp;*.h src.lzo
+ * 最多支持16个后缀。
  */
 #ifdef _DEBUG
-#include <vld.h>
+//#include <vld.h>
 #endif
 
 #include "lzoarchive.h"
@@ -21,6 +27,9 @@
 /// lzo archive tool version
 #define LZO_ARCHIVE_TOOL_VERSION 0x000100
 #define LZO_ARCHIVE_TOOL_VERSION_STR "Lzo Archive Tool Version 0.1.0"
+
+/// max postfics
+#define MAX_POST 16
 
 #ifdef __cplusplus
 extern "C"
@@ -129,6 +138,19 @@ const char *get_self_name();
 const char *get_self_log_name();
 
 /**
+ * compare the file's postfix.
+ * it the file 's postfix is the param 'postfix', return true
+ *
+ */
+bool compare_postfix( const char *filename, const char *postfix );
+
+/**
+ * construct a postfix array
+ * return how many postfix it constructed
+ */
+int construct_postfix( const char *postfixs, char array[16][MAX_PATH] );
+
+/**
  * these functions below mainly to deal with the program informations.
  *
  *
@@ -175,8 +197,9 @@ int main( int argc, char **argv )
 	return 0;
 }
 
-file_name *get_file_name_list( const char *path, const char *file, bool recurse, bool bpath )
+file_name *get_file_name_list( const char *path, const char *_file, bool recurse, bool bpath )
 {
+	const char *file = "*.*";
 	char full_path[MAX_PATH];
 	file_name *header = 0;
 
@@ -206,9 +229,10 @@ file_name *get_file_name_list( const char *path, const char *file, bool recurse,
 	{
 		char subpath[MAX_PATH];
 		construct_file_name( subpath, path, file_data.cFileName, true );
-		header = get_file_name_list( subpath, file, true, bpath );
+		header = get_file_name_list( subpath, _file, true, bpath );
 	}
-	else if( !( file_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) )
+	else if( !( file_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) &&
+		compare_postfix( file_data.cFileName, _file ) )
 	{
 		file_name *filename = (file_name*) malloc( sizeof( file_name ) );
 		construct_file_name( filename->name, path, file_data.cFileName, bpath );
@@ -233,7 +257,7 @@ file_name *get_file_name_list( const char *path, const char *file, bool recurse,
 		{
 			char subpath[MAX_PATH];
 			construct_file_name( subpath, path, file_data.cFileName, true );
-			file_name *sub_list = get_file_name_list( subpath, file, true, bpath );
+			file_name *sub_list = get_file_name_list( subpath, _file, true, bpath );
 			if( sub_list != 0 )
 			{
 				file_name *tail = get_tail( sub_list );
@@ -241,7 +265,8 @@ file_name *get_file_name_list( const char *path, const char *file, bool recurse,
 				header = sub_list;
 			}
 		}
-		else if( !( file_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) )
+		else if( !( file_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) &&
+			compare_postfix( file_data.cFileName, _file ) )
 		{
 			file_name *new_file = (file_name*) malloc( sizeof( file_name ) );
 			construct_file_name( new_file->name, path, file_data.cFileName, bpath );
@@ -545,6 +570,67 @@ const char *get_self_name()
 const char *get_self_log_name()
 {
 	return LOG_FILE;
+}
+
+bool compare_postfix( const char *filename, const char *postfix )
+{
+	char postfixs[MAX_POST][MAX_PATH];
+	int post_count = construct_postfix( postfix, postfixs );
+
+	char fp[MAX_PATH];
+	int len = (int)strlen( filename );
+	int i ;
+	
+	for( i = len; i >= 0; -- i )
+	{
+		if( filename[i] == '.' )
+		{
+			strcpy( fp, &filename[i+1] );
+			for( int index = 0; index < post_count; ++ index )
+			{
+				if( strcmp( postfixs[index], "*.*" ) == 0 )
+				{
+					return true;
+				}
+				else if( strcmp( fp, &postfixs[index][2] ) == 0 )
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+	}
+
+	return false;
+}
+
+int construct_postfix( const char *_postfixs, char array[16][MAX_PATH] )
+{
+	char postfixs[MAX_PATH];
+	strcpy( postfixs, _postfixs );
+	strcat( postfixs, ";" );
+
+	int len = (int)strlen( postfixs );
+	int index = 0;
+	int i = 0;
+
+	for( int pos = 0; pos < len; ++ pos )
+	{
+		if( postfixs[pos] == ';' )
+		{
+			array[index][i] = '\0';
+			++ index;
+			i = 0;
+		}
+		else
+		{
+			array[index][i] = postfixs[pos];
+			++ i;
+		}
+	}
+
+	return index ;
 }
 
 #ifdef __cplusplus
