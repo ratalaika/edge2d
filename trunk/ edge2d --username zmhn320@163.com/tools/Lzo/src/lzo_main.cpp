@@ -574,6 +574,11 @@ const char *get_self_log_name()
 
 bool compare_postfix( const char *filename, const char *postfix )
 {
+	if( strcmp( filename, postfix ) == 0 )
+	{
+		return true;
+	}
+
 	char postfixs[MAX_POST][MAX_PATH];
 	int post_count = construct_postfix( postfix, postfixs );
 
